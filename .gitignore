@@ -1,3 +1,4 @@
-/dist/
-/node_modules/
-index-sample.html
+node_modules
+.local-storage
+dist/
+config.js
