@@ -13,8 +13,11 @@
 
 ## Files Description
 * /js/
+* /sass/
 * /src/
-* /
+* /static/
+* gulpfile.js：Automatically compile.
+
 
 ## Reference
 * [WebRTC API Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
