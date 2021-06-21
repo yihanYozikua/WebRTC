@@ -1,0 +1,17 @@
+$theme-color: rgb(42, 42, 42);
+$theme-content-color: rgb(157, 195, 157);
+$header-footer-color: rgb(37, 37, 37);
+$theme-font-content: "Avantgarde", "TeX Gyre Adventor", "URW Gothic L", sans-serif;
+$theme-photo-font-content: "Avantgarde", "TeX Gyre Adventor", "URW Gothic L", sans-serif;
+$theme-font-color: rgb(190, 190, 190);
+
+
+body{
+  font-family: $theme-font-content;
+  font-size: 20px;
+  width: 100%;
+}
+
+.text{
+  font-size: 0.7em !important;
+}
