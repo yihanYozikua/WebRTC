@@ -21,6 +21,13 @@ video{
   height: 300px;
 }
 
+#enterPage{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #local-container, #remote-container{
   display: none;
 }
