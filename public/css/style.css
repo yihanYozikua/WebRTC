@@ -1,0 +1,47 @@
+:root{
+  --theme-font: Verdana, Geneva, Tahoma, sans-serif;
+  --theme-font-color: rgb(70, 70, 70);
+}
+
+body{
+  font-family: var(--theme-font);
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  
+}
+
+h1{
+  font-size: 3vh;
+  color: var(--theme-font-color); 
+}
+
+video{
+  width: 400px;
+  height: 300px;
+}
+
+#local-container, #remote-container{
+  display: none;
+}
+
+.grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#local-container, #remote-container{
+  display: none;
+  flex-direction: column;
+}
+
+.box{
+  display: flex;
+  flex-direction: row;
+}
+.box button{
+  margin: 0vh 1vh;
+}
