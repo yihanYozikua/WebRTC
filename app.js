@@ -17,11 +17,11 @@ const onConnection = (socket) => {
   socket.on('new user', function(data){
 		console.log(data);
 		if (nicknames.indexOf(data) != -1) {
-
 		} else {
 			socket.emit('chat', 'SERVER', 'Welcome ' + data);
 
 			socket.nickname = data;
+			io.sockets.emit('chat', 'SERVER', socket.nickname + ' join the room');
 			nicknames.push(socket.nickname);
 			io.sockets.emit('usernames', nicknames);
 			updateNicknames();

@@ -29,10 +29,10 @@ $(function(){
   });
 
   socket.on('usernames', function(data){
-    var sb = '';
+    var sb = ' ';
     for(var d = 0; d < data.length; d++ ) {
       console.log(data[d]);
-      sb += data[d] + "<br />";
+      sb += '<i class="fas fa-user-circle"></i>&nbsp' + data[d] + "<br />";
     }
     $('div#users').html(sb);
 
@@ -44,8 +44,7 @@ $(function(){
     var datetime = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate(); 
       datetime += ' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(); 
 
-    $chat.append("<br /><i><b>[ " + msg + " ]</b> (" + 
-      datetime + ")</i><br />");
+    $chat.append("<i style='color: #9bffb2;'><b>" + msg + "</b> <p style='font-size: 1.5vh;'>" + datetime + "</p></i>");
   });
 
   socket.on('new message', function(data){
@@ -54,9 +53,9 @@ $(function(){
     var name = data.nick;
 
     var now = new Date(); 
-    var datetime = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate(); 
-      datetime += ' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(); 
+    var datetime = (now.getMonth()+1)+'/'+now.getDate(); 
+    datetime += ' '+now.getHours()+ ':' +now.getMinutes()+':'+now.getSeconds(); 
 
-    $chat.append("<b>" + name + " </b>: " + msg + " (<i>" + datetime + "<i>)<br />");
+    $chat.append("<div class='msg-content'><b style='font-weight:normal; background-color: gray; padding: 0.5vh 1vh; border-radius: 5px;'>" + name + "</b>&nbsp" + msg + " <i style='font-size: 1.5vh; color: gray;'>&nbsp" + datetime + "</i><br /><div>");
   });
 });
