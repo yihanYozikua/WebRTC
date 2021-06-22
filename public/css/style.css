@@ -25,16 +25,26 @@ video{
   display: none;
 }
 
-.grid{
+.container-grid{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.video_chat-grid, .text_chat-grid{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+}
+
+.text_chat-grid textarea, .text_chat-grid div{
+  margin: 1vh 0vh;
 }
 
 #local-container, #remote-container{
   display: none;
+  /* display: flex; */
   flex-direction: column;
 }
 
@@ -44,4 +54,10 @@ video{
 }
 .box button{
   margin: 0vh 1vh;
+}
+
+#startButton{
+  width: 100px;
+  border-radius: 100px;
+  margin-bottom: 3vh;
 }
