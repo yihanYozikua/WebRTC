@@ -163,13 +163,10 @@ h1{
 #chat {
   height: 40vh;
   overflow-y: scroll;
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start; */
 }
 #chat .msg-content{
   display:flex;
-  justify-content: 
+  justify-content:
   flex-start; 
   align-items: center; 
   margin: 1vh 0vh;
