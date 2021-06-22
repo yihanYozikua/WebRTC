@@ -26,7 +26,7 @@
       </form>
     </div>
   </div>
-  
+
 
   <div id="chatroom-content" style="display: none;">
     <div class="container" style="display: flex; flex-direction: column; height: 100vh;">
@@ -36,41 +36,57 @@
             <h1 class="text">Local User</h1>
             <video id="localVideo" autoplay></video>
           </section>
-  
+
           <section id="remote-container">
             <h1>Remote User</h1>
             <video id="remoteVideo" autoplay></video>
           </section>
-  
+
           <div class="box">
             <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
             <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
           </div>
         </div>
-  
+
         <div class="col text_chat-grid">
-          <h1>Message Passing</h1>
+          <div id="chatWrap" class="panel panel-default">
+            <div class="panel-heading">即時聊天</div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-12">
+                  <div id="chat"></div>
+                </div>
+                <div class="col-12">
+                  線上名單：
+                  <div id="users"></div>
+                </div>
+              </div>
+              <form id="send-message">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="請輸入聊天訊息..." id="message">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">送出留言</button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- <h1>Message Passing</h1>
           <textarea id="dataChannelSend" placeholder="enter some text, then press Send."></textarea>
-  
+
           <div id="buttons">
             <button id="textSendBtn" class="btn btn-primary">Send</button>
-        </div>
-        <!-- <textarea id="dataChannelReceive" disabled></textarea>
-          <textarea id="dataChannelSend" disabled placeholder="Press Start, enter some text, then press Send."></textarea>
-    
-          <div id="buttons">
-            <button id="sendButton" class="btn btn-success">Send</button>
-            <button id="closeButton" class="btn btn-danger" style="display: none;">Stop</button>
           </div> -->
+        </div>
+      </div>
+
+      <div class="startBtn-container">
+        <button id="startButton" class="btn btn-success">Start</button>
       </div>
     </div>
-  
-    <div class="startBtn-container">
-      <button id="startButton" class="btn btn-success">Start</button>
-    </div>
-    </div>
   </div>
-  
+
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

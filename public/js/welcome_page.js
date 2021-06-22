@@ -49,6 +49,7 @@ $(function(){
   });
 
   socket.on('new message', function(data){
+    console.log("new msg append");
     var msg = data.msg;
     var name = data.nick;
 
