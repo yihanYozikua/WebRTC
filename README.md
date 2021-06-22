@@ -15,7 +15,8 @@ There are **4 features** in this WebRTC:
 ---
 
 ## Dev Tools
-* **Python3.8**
+* **Express**
+* **Socket.io**
 
 
 ## Files Description
