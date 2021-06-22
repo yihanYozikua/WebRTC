@@ -19,7 +19,7 @@ const onConnection = (socket) => {
 		if (nicknames.indexOf(data) != -1) {
 
 		} else {
-			socket.emit('chat', 'SERVER', '歡迎光臨 ' + data);
+			socket.emit('chat', 'SERVER', 'Welcome ' + data);
 
 			socket.nickname = data;
 			nicknames.push(socket.nickname);
@@ -43,7 +43,7 @@ const onConnection = (socket) => {
   socket.on('disconnect', function(data){
     events.leaveRoom(socket)({ room: "general" })
 		if (!socket.nickname) return;
-		io.sockets.emit('chat', 'SERVER', socket.nickname + ' 離開了聊天室～');
+		io.sockets.emit('chat', 'SERVER', socket.nickname + ' left the room');
 		nicknames.splice(nicknames.indexOf(socket.nickname), 1);
 		updateNicknames();
 	});

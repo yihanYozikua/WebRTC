@@ -44,6 +44,7 @@
           </section>
 
           <div class="box">
+            <button id="startButton" class="btn btn-success">Call</button>
             <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
             <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
           </div>
@@ -51,22 +52,22 @@
 
         <div class="col-4 text_chat-grid">
           <div id="chatWrap" class="panel panel-default">
-            <div class="panel-heading">即時聊天</div>
+            <!-- <div class="panel-heading">Chat room</div> -->
             <div class="panel-body">
               <div class="row">
                 <div class="col-12">
                   <div id="chat"></div>
                 </div>
                 <div class="col-12">
-                  線上名單：
+                  Who's online
                   <div id="users"></div>
                 </div>
               </div>
               <form id="send-message">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="請輸入聊天訊息..." id="message">
+                  <input type="text" class="form-control" placeholder="Please enter the text message" id="message">
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary">送出留言</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                   </span>
                 </div>
               </form>
@@ -76,9 +77,7 @@
       </div>
     </div>
 
-    <div class="startBtn-container">
-      <button id="startButton" class="btn btn-success">Start</button>
-    </div>
+    
   </div>
   </div>
 

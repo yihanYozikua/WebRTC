@@ -35,7 +35,7 @@ video{
 .container-grid{
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 90vh;
 }
 
 .video_chat-grid, .text_chat-grid{
@@ -65,17 +65,18 @@ video{
 
 #startButton{
   width: 100px;
-  border-radius: 100px;
-  margin-bottom: 3vh;
+  /* border-radius: 100px; */
+  
 }
 
 
 /********************/
 #chat {
-  height: 50vh;
+  height: 40vh;
   overflow-y: scroll;
 }
 #chatWrap {
   float: left;
-  border-left: 1px #000 solid;
+  border-left: 1px var(--theme-font-color) solid;
+  padding: 0vh 2vh;
 }

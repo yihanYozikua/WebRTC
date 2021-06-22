@@ -44,7 +44,7 @@ $(function(){
     var datetime = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate(); 
       datetime += ' '+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds(); 
 
-    $chat.append("<br /><i>系統訊息: <b>[ " + msg + " ]</b> (" + 
+    $chat.append("<br /><i><b>[ " + msg + " ]</b> (" + 
       datetime + ")</i><br />");
   });
 
