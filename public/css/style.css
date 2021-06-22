@@ -1,19 +1,66 @@
 :root{
   --theme-font: Verdana, Geneva, Tahoma, sans-serif;
-  --theme-font-color: rgb(70, 70, 70);
+  --theme-font-color: white;
+  --theme-color: #343a40;
+  --theme-secondary-color: #66727e;
 }
 
 body{
   font-family: var(--theme-font);
-  font-size: 20px;
+  font-size: 2.5vh;
   width: 100%;
   text-align: center;
-  
+  background-color: var(--theme-color);
+  overflow-x: hidden;
 }
 
 h1{
-  font-size: 3vh;
+  font-size: 2.5vh;
   color: var(--theme-font-color); 
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 2vh;
+  color: #97a8b9;
+  padding-left: 1vh;
+}
+
+.btn{
+  font-size: 1.8vh;
+}
+.fa-home:hover{
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  transform: scale(1.2);
+  color: rgb(255, 187, 187) !important;
+}
+.fa-user:hover{
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  transform: scale(1.2);
+  color: rgb(187, 247, 255) !important; 
+}
+.fa-times-circle:hover{
+  text-decoration: none;
+}
+
+#userList{
+  display: flex;
+  flex-direction: column;
+  padding: 2vh 1vh;
+  position: absolute;
+  top: 0;
+  right: -250px;
+  color: white;
+  font-weight: bold;
+  font-size: 2vh;
+  background-color: var(--theme-secondary-color);
+  width: 250px;
+  height: 100vh;
+  border-radius: 5px;
+  /* box-shadow: 2px 2px 30px 10px rgba(230, 230, 230, 0.2); */
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
 }
 
 .localVideo-container{
@@ -35,7 +82,7 @@ h1{
 }
 
 #enterPage{
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +95,7 @@ h1{
 .container-grid{
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 90vh;
 }
 
 .video_chat-grid section{
@@ -93,6 +140,24 @@ h1{
   
 }
 
+#send-message .input-group *{
+  margin: 0vh 1vh;
+}
+
+#footer{
+  position: absolute;
+  height: 7vh;
+  width: 100vw;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1.3vh;
+}
+#footer .btn-secondary{
+  font-size: 1.5vh;
+  padding: 0.3vh 1vh;
+}
+
 
 /********************/
 #chat {
@@ -103,4 +168,5 @@ h1{
   float: left;
   border-left: 1px var(--theme-font-color) solid;
   padding: 0vh 2vh;
+  color: white;
 }
