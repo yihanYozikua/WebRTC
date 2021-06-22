@@ -34,20 +34,24 @@
 
         <div class="col-8 video_chat-grid">
           <section id="local-container">
-            <h1 class="text">Local User</h1>
-            <video id="localVideo" autoplay></video>
+            <!-- <h1 class="text">Local User</h1> -->
+            <span id="localVideo-container" class="localVideo-container">
+              <video id="localVideo" autoplay width="800px"></video>
+            </span>
           </section>
 
           <section id="remote-container">
-            <h1>Remote User</h1>
-            <video id="remoteVideo" autoplay></video>
+            <!-- <h1>Remote User</h1> -->
+            <span id="remoteVideo-container" class="remoteVideo-container">
+              <video id="remoteVideo" autoplay width="400px"></video>
+            </span>
           </section>
 
-          <div class="box">
+          <section class="box">
             <button id="startButton" class="btn btn-success">Call</button>
             <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
             <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
-          </div>
+          </section>
         </div>
 
         <div class="col-4 text_chat-grid">
@@ -74,6 +78,8 @@
             </div>
           </div>
         </div>
+
+        
       </div>
     </div>
 

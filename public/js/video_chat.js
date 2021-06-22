@@ -58,7 +58,7 @@ async function getUserStream() {
   console.log("Requesting local stream");
 
   local_vid_area.style.display = "flex";
-  remote_vid_area.style.display = "flex";
+  // remote_vid_area.style.display = "flex";
   if ("mediaDevices" in navigator) {
     const stream = await navigator.mediaDevices.getUserMedia(
       mediaConstraints
@@ -77,6 +77,7 @@ async function getUserStream() {
 async function caller() {
   try {
     console.log("createOffer start");
+    remote_vid_area.style.display = "flex";
     const offer = await peer.createOffer(offerOptions);
     await peer.setLocalDescription(offer);
     sendSDPBySignaling("offer", offer);
