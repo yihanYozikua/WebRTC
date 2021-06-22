@@ -19,10 +19,10 @@ const offerOptions = {
   offerToReceiveVideo: 1,
 };
 // Media config
-// const mediaConstraints = {
-//   audio: false,
-//   video: true,
-// };
+const mediaConstraints = {
+  audio: false,
+  video: true,
+};
 const Init = async () => {
   peer = buildPeerConnection();
   Chat.emit("joinRoom", { username: "test" });
@@ -136,6 +136,7 @@ function close() {
 Init().catch((err) => console.log(err));
 
 
+<<<<<<< HEAD
 
 // ==========================
 // Message
@@ -488,3 +489,5 @@ async function handleNewIceCandidate(candidate) {
 // function sendSDPBySignaling(event, sdp) {
 //   socket.emit(event, sdp);
 // }
+=======
+>>>>>>> retreive
