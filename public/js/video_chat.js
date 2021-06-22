@@ -1,5 +1,6 @@
 import Chat from "./chat.js";
 
+
 let peer;
 let cacheStream;
 
@@ -53,7 +54,9 @@ function addRemoteStream(event) {
 }
 
 async function getUserStream() {
+  console.log("getUserMedia ...");
   console.log("Requesting local stream");
+
   local_vid_area.style.display = "flex";
   remote_vid_area.style.display = "flex";
   if ("mediaDevices" in navigator) {
@@ -204,6 +207,7 @@ async function calling() {
     console.log(`Error ${error.name}: ${error.message}`);
   }
 }
+connection();
 
 function closing() {
   // Disconnect all our event listeners; we don't want stray events
@@ -246,6 +250,7 @@ function closing() {
 
 // utils
 function createPeerConnection() {
+  console.log("CREATE PEER CONNECTION");
   peer = new RTCPeerConnection();
   peer.onicecandidate = handleIceCandidate;
   peer.ontrack = handleRemoteStream;
@@ -397,16 +402,16 @@ function handleRemoteStream(event) {
   }
 }
 
-async function getUserStream() {
-  console.log("getUserMedia ...");
-  if ("mediaDevices" in navigator) {
-    const stream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
-    cacheStream = stream;
+// async function getUserStream() {
+//   console.log("getUserMedia ...");
+//   if ("mediaDevices" in navigator) {
+//     const stream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
+//     cacheStream = stream;
 
-    const localVideo = document.getElementById("localVideo");
-    localVideo.srcObject = cacheStream;
-  }
-}
+//     const localVideo = document.getElementById("localVideo");
+//     localVideo.srcObject = cacheStream;
+//   }
+// }
 
 async function addStreamProcess() {
   let errMsg = "";
@@ -457,19 +462,19 @@ async function handleSDPAnswer(desc) {
     console.log(`Error ${error.name}: ${error.message}`);
   }
 }
-async function createAnswer() {
-  try {
-    console.log("createAnswer ...");
-    const answer = await peer.createAnswer();
-    console.log("setLocalDescription ...");
-    await peer.setLocalDescription(answer);
-    console.log("signaling answer ...");
-    sendSDPBySignaling("answer", answer);
-  } catch (error) {
-    errMsg = "Create Answer error ===> " + error.toString();
-    throw new Error(errMsg);
-  }
-}
+// async function createAnswer() {
+//   try {
+//     console.log("createAnswer ...");
+//     const answer = await peer.createAnswer();
+//     console.log("setLocalDescription ...");
+//     await peer.setLocalDescription(answer);
+//     console.log("signaling answer ...");
+//     sendSDPBySignaling("answer", answer);
+//   } catch (error) {
+//     errMsg = "Create Answer error ===> " + error.toString();
+//     throw new Error(errMsg);
+//   }
+// }
 
 async function handleNewIceCandidate(candidate) {
   console.log(`*** 加入新取得的 ICE candidate: ${JSON.stringify(candidate)}`);
@@ -480,6 +485,6 @@ async function handleNewIceCandidate(candidate) {
   }
 }
 
-function sendSDPBySignaling(event, sdp) {
-  socket.emit(event, sdp);
-}
+// function sendSDPBySignaling(event, sdp) {
+//   socket.emit(event, sdp);
+// }
