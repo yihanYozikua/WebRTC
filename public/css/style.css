@@ -21,7 +21,6 @@ video{
   height: 300px;
 }
 
-
 #enterPage{
   height: 100vh;
   display: flex;
@@ -48,11 +47,11 @@ video{
 
 .text_chat-grid textarea, .text_chat-grid div{
   margin: 1vh 0vh;
-  /* font-size: 1vh; */
 }
 
 #local-container, #remote-container{
   display: none;
+  /* display: flex; */
   flex-direction: column;
 }
 
@@ -70,12 +69,13 @@ video{
   margin-bottom: 3vh;
 }
 
-/***************/
-#chat {
-  height: 500px;
-}
 
+/********************/
+#chat {
+  height: 50vh;
+  overflow-y: scroll;
+}
 #chatWrap {
   float: left;
-  border: 1px #000 solid;
+  border-left: 1px #000 solid;
 }
