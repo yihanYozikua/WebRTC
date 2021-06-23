@@ -1,4 +1,3 @@
-
 const socket = io.connect('/');
 
 // Socket events

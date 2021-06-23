@@ -1,4 +1,4 @@
-import Chat from "./chat.js.js";
+import Chat from "./chat.js";
 
 
 let peer;
