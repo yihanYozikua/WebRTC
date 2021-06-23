@@ -18,9 +18,10 @@ const offerOptions = {
   offerToReceiveAudio: 1,
   offerToReceiveVideo: 1,
 };
+
 // Media config
-const mediaConstraints = {
-  audio: false,
+const mediaConstraints = { // https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints
+  audio: true,
   video: true,
 };
 const Init = async () => {
@@ -35,10 +36,11 @@ const Init = async () => {
   hangupButton.addEventListener("click", close);
 };
 
+// build Peer Connection
 function buildPeerConnection() {
   const peer = new RTCPeerConnection();
   peer.onicecandidate = onIceCandidate;
-  peer.ontrack = addRemoteStream;
+  peer.ontrack = addRemoteStream; // https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/ontrack
 
   return peer;
 }
@@ -65,7 +67,7 @@ async function getUserStream() {
     );
     cacheStream = stream;
     localVideo.srcObject = stream;
-    stream.getTracks().forEach((track) => peer.addTrack(track, stream));
+    stream.getTracks().forEach((track) => peer.addTrack(track, stream)); // https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addTrack
 
     // enable "Enter Video Chat" Button & disabled itself
     callButton.removeAttribute("disabled");
@@ -78,7 +80,7 @@ async function caller() {
   try {
     console.log("createOffer start");
     remote_vid_area.style.display = "flex";
-    const offer = await peer.createOffer(offerOptions);
+    const offer = await peer.createOffer(offerOptions); // https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer
     await peer.setLocalDescription(offer);
     sendSDPBySignaling("offer", offer);
   } catch (error) {
@@ -86,7 +88,7 @@ async function caller() {
   }
 }
 
-async function setRemoteDescription(type, desc) {
+async function setRemoteDescription(type, desc) { // https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setRemoteDescription
   try {
     console.log(type, desc)
     await peer.setRemoteDescription(desc);
