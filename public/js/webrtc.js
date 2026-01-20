@@ -8,7 +8,13 @@ const shareZone = document.getElementById('share-zone');
 const roomLinkDisplay = document.getElementById('roomLink');
 const copyBtn = document.getElementById('copyBtn');
 
+// UI Elements for Media Controls
+const muteBtn = document.getElementById('muteBtn');
+const cameraBtn = document.getElementById('cameraBtn');
+
 let localStream;
+let isMuted = false;
+let isCameraOff = false;
 const peers = {}; // Connection storage: { socketId: RTCPeerConnection }
 
 /**
@@ -26,6 +32,7 @@ async function init() {
         }
     } catch (error) {
         console.error('Error accessing media devices:', error);
+        alert('Could not access camera or microphone. Please check permissions.');
     }
 }
 
@@ -66,6 +73,30 @@ if (copyBtn) {
 }
 
 /**
+ * Toggle Microphone Audio Track
+ */
+if (muteBtn) {
+    muteBtn.onclick = () => {
+        isMuted = !isMuted;
+        localStream.getAudioTracks().forEach(track => track.enabled = !isMuted);
+        muteBtn.innerText = isMuted ? 'Unmute Mic' : 'Mute Mic';
+        muteBtn.classList.toggle('off', isMuted);
+    };
+}
+
+/**
+ * Toggle Camera Video Track
+ */
+if (cameraBtn) {
+    cameraBtn.onclick = () => {
+        isCameraOff = !isCameraOff;
+        localStream.getVideoTracks().forEach(track => track.enabled = !isCameraOff);
+        cameraBtn.innerText = isCameraOff ? 'Start Video' : 'Stop Video';
+        cameraBtn.classList.toggle('off', isCameraOff);
+    };
+}
+
+/**
  * Signaling: Handle list of existing users when joining a room
  */
 socket.on('all-users', (users) => {
@@ -92,7 +123,7 @@ function createPeerConnection(targetID) {
     // Attach local tracks to the connection
     localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
 
-    // Inside createPeerConnection or where you handle ontrack:
+    // Handle incoming remote stream
     pc.ontrack = (e) => {
         if (!document.getElementById(`container-${targetID}`)) {
             const container = document.createElement('div');

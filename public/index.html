@@ -18,11 +18,14 @@
     </div>
 
     <div id="video-grid">
-        <div class="video-container">
+        <div class="video-container" id="local-container">
             <video id="localVideo" autoplay playsinline muted></video>
             <p>You (Local)</p>
+            <div class="media-controls">
+                <button id="muteBtn">Mute Mic</button>
+                <button id="cameraBtn">Stop Video</button>
+            </div>
         </div>
-        <video id="localVideo" autoplay playsinline muted></video>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

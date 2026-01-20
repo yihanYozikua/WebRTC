@@ -91,3 +91,30 @@ video {
 #localVideo {
     transform: scaleX(-1);
 }
+
+.media-controls {
+    position: absolute;
+    bottom: 40px; /* Above the name label */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.video-container:hover .media-controls {
+    opacity: 1;
+}
+
+.media-controls button {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #555;
+}
+
+.media-controls button.off {
+    background: #ff4444;
+    border-color: #ff4444;
+}
