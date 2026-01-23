@@ -60,6 +60,7 @@ node app.js
 * [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
 * [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)
 * [IT邦幫忙鐵人賽-菜雞前端邁入網頁即時通訊(WebRTC)之旅 系列](https://ithelp.ithome.com.tw/users/20129521/ironman/3138)
+* [WebRTC W3C doc](https://www.w3.org/TR/2025/REC-webrtc-20250313/)
 
 
 ## Demo Screenshot
