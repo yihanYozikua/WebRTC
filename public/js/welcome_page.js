@@ -1,11 +1,19 @@
+import socket from './chat.js';
+
 $(function(){
   var nickname = sessionStorage.getItem('myNickname');
   var roomId = window.location.pathname.split('/')[2] || 'general';
 
   if(!nickname){
-    alert('Please enter the nickname first!');
-    window.location.href = '/';
-    return;
+    nickname = prompt('To join the room, a nickname is required...');
+
+    if (!nickname || nickname.trim() === '') {
+      alert('A nickname is REQUIRED to join this video call!!!');
+      window.location.href = '/';
+      return;
+    }
+
+    sessionStorage.setItem('myNickname', nickname.trim());
   }
 
   socket.emit('new user', nickname);

@@ -26,7 +26,7 @@ const joinRoom = (socket) => ({ username, room = Room1 }) => {
       id: socket.id
     };
     // Notify all the users in the same room
-    socket.broadcast.in(room).emit('newUser', users[room]);
+    socket.to(room).emit('newUser', users[room]);
   });
 }
 
@@ -35,26 +35,26 @@ const leaveRoom = (socket) => ({ room, username }) => {
       let usersRoom = users[room]
       delete  users[room][socket.client.id]
       // usersRoom = usersRoom.filter((user) => (user.username !== username)) // delete user from the array
-      socket.broadcast.in(room).emit('userLeave', usersRoom); // To all the users in the same room
+      socket.to(room).emit('userLeave', usersRoom); // To all the users in the same room
   })
 }
 
 const offer = (socket) => ({room, offer}) => {
-  console.log('switch offer')
-  socket.broadcast.in(room).emit('offer', offer);
+  socket.to(room).emit('offer', offer);
 }
 
 const answer = (socket) => ({room, answer}) => {
   console.log('switch answer')
-  socket.broadcast.in(room).emit('answer', answer);
+  socket.to(room).emit('answer', answer);
 }
 
 const icecandidate = (socket) => ({room, candidate}) => {
   console.log('switch icecandidate')
-  socket.broadcast.in(room).emit('icecandidate', candidate);
+  socket.to(room).emit('icecandidate', candidate);
 }
 
 module.exports = {
+  getUsersInRoom,
   joinRoom,
   leaveRoom,
   offer,
