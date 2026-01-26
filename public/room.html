@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Room</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="chatroom-content">
+      <div class="container" style="display: flex; flex-direction: column; height: 100vh;">
+        <div class="container-grid">
+          <div class="col-8 video_chat-grid">
+            <section id="local-container">
+              <span id="localVideo-container" class="localVideo-container">
+                <video id="localVideo" autoplay width="800px"></video>
+              </span>
+            </section>
+
+            <section id="remote-container">
+              <span id="remoteVideo-container" class="remoteVideo-container">
+                <video id="remoteVideo" autoplay width="400px"></video>
+              </span>
+            </section>
+
+            <section class="box">
+              <button id="startButton" class="btn btn-success">Start</button>
+              <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
+              <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
+            </section>
+          </div>
+
+          <div class="col-4 text_chat-grid">
+            <div id="chatWrap" class="panel panel-default">
+              <div class="panel-body">
+                <div id="chat"></div>
+                <form id="send-message">
+                  <input type="text" id="message" placeholder="Type message...">
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script type="module" src="/js/welcome_page.js"></script>
+    <script type="module" src="/js/video_chat.js"></script>
+</body>
+</html>

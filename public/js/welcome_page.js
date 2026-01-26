@@ -1,26 +1,25 @@
 $(function(){
-  var socket = io.connect();
+  var nickname = sessionStorage.getItem('myNickname');
+  var roomId = window.location.pathname.split('/')[2] || 'general';
+
+  if(!nickname){
+    alert('Please enter the nickname first!');
+    window.location.href = '/';
+    return;
+  }
+
+  socket.emit('new user', nickname);
+  socket.emit('joinRoom', {
+    username: nickname,
+    room: roomId
+  });
+
+  $('#enterPage').hide();
+  $('#chatroom-content').show();
+
   var $frmMessage = $('#send-message');
-  var $frmNick = $('#setNick');
-  var $nickError = $('#nickError');
-  var $nickBox = $('#txtNickname');
   var $boxMessage = $('#message');
   var $chat = $('#chat');
-  
-
-  $frmNick.submit(function(e){
-    console.log($nickBox.val());
-    console.log('hi, frmNick');
-    e.preventDefault();
-    
-    socket.emit('new user', $nickBox.val() );
-    
-    $nickBox.val('');
-
-    $('#enterPage').hide();
-    $('#chatroom-content').show();
-    
-  });
 
   $frmMessage.submit(function(e){
     e.preventDefault();

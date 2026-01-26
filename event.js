@@ -1,14 +1,32 @@
 const Room1 = 'general'
+// here saves all the socket.id and nicknames
 const users = {
   [Room1]: {},
 };
 
+const getUsersInRoom = (room) => {
+  if (!users[room]) {
+    return [];
+  }
+
+  return Object.values(users[room]).map(user => user.username);
+};
+
 const joinRoom = (socket) => ({ username, room = Room1 }) => {
   socket.join(room, () => {
-      // push user for the suitable room
-      users[room][socket.client.id] = { username: username, id: socket.client.id }
-      // Notify all the users in the same room
-      socket.broadcast.in(room).emit('newUser', users[room]);
+    if(!users[room]){
+      users[room] = {};
+    }
+
+    // save into socket for later disconnection
+    // push user for the suitable room
+    socket.roomId = room;
+    users[room][socket.id] = {
+      username: username,
+      id: socket.id
+    };
+    // Notify all the users in the same room
+    socket.broadcast.in(room).emit('newUser', users[room]);
   });
 }
 
@@ -35,7 +53,6 @@ const icecandidate = (socket) => ({room, candidate}) => {
   console.log('switch icecandidate')
   socket.broadcast.in(room).emit('icecandidate', candidate);
 }
-
 
 module.exports = {
   joinRoom,

@@ -1,18 +1,14 @@
 import Chat from "./chat.js";
 
+const roomId = window.location.pathname.split('/')[2] || 'general';
 
 let peer;
 let cacheStream;
 
-const startButton = document.getElementById("startButton");
-const callButton = document.getElementById("callButton");
-const hangupButton = document.getElementById("hangupButton");
 
-const localVideo = document.getElementById("localVideo");
-const remoteVideo = document.getElementById("remoteVideo");
+let startButton, callButton, hangupButton;
+let localVideo, remoteVideo, local_vid_area, remote_vid_area;
 
-const local_vid_area = document.getElementById("local-container");
-const remote_vid_area = document.getElementById("remote-container");
 
 const offerOptions = {
   offerToReceiveAudio: 1,
@@ -24,9 +20,22 @@ const mediaConstraints = { // https://developer.mozilla.org/en-US/docs/Web/API/M
   audio: true,
   video: true,
 };
+
 const Init = async () => {
+  startButton = document.getElementById("startButton");
+  callButton = document.getElementById("callButton");
+  hangupButton = document.getElementById("hangupButton");
+  localVideo = document.getElementById("localVideo");
+  remoteVideo = document.getElementById("remoteVideo");
+  local_vid_area = document.getElementById("local-container");
+  remote_vid_area = document.getElementById("remote-container");
+
+  if (!startButton) {
+    return;
+  }
+  
   peer = buildPeerConnection();
-  Chat.emit("joinRoom", { username: "test" });
+
   Chat.on("offer", (offer) => setRemoteDescription("offer", offer));
   Chat.on("answer", (answer) => setRemoteDescription("answer", answer));
   Chat.on("icecandidate", (candidate) => addCandidate(candidate));
@@ -46,7 +55,12 @@ function buildPeerConnection() {
 }
 
 function onIceCandidate(event) {
-  Chat.emit("icecandidate", event.candidate);
+  if(event.candidate){
+    Chat.emit('icecandidate', {
+      room: roomId,
+      candidate: event.candidate
+    });
+  }
 }
 
 function addRemoteStream(event) {
@@ -117,23 +131,23 @@ function addCandidate(candidate) {
 }
 
 function sendSDPBySignaling(event, sdp) {
-  console.log(event, sdp)
-  Chat.emit(event, sdp);
+  Chat.emit(event, {
+    room: roomId,
+    [event]: sdp
+  });
 }
 
 function close() {
-  peer.close();
-  peer = null;
-  cacheStream.getTracks().forEach((track) => track.stop());
-
-  local_vid_area.style.display = "none";
-  remote_vid_area.style.display = "none";
-
-  // enable "Start" Button Button & disabled "Enter Video Chat"
-  startButton.removeAttribute("disabled");
-  callButton.setAttribute("disabled", "disabled");
-
+  if (peer) {
+    peer.close();
+    peer = null;
+  }
+  if (cacheStream) {
+    cacheStream.getTracks().forEach((track) => track.stop());
+  }
   window.location.reload();
 }
 
-Init().catch((err) => console.log(err));
+window.addEventListener('load', () => {
+  Init().catch((err) => console.log(err));
+});
