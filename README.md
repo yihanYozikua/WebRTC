@@ -28,7 +28,7 @@ This is a real-time Video chat app.
 │   │   ├── chat.js: User connection events. Including “new entering”, “leave”, and “disconnect.”
 │   │   ├── landing.js
 │   │   ├── onlineList.js: Show or hide online users list user interface.
-│   │   ├── video_chat.js: WebRTC controller.
+│   │   ├── videoChat.js: WebRTC controller.
 │   │   └── welcome_page.js: Welcome page controller.
 │   ├── landing.html
 │   └── room.html
@@ -50,6 +50,7 @@ node app.js
 * [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
 * [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)
 * [IT邦幫忙鐵人賽-菜雞前端邁入網頁即時通訊(WebRTC)之旅 系列](https://ithelp.ithome.com.tw/users/20129521/ironman/3138)
+* [Node.js Style Guide](https://github.com/felixge/node-style-guide)
 
 ## Screenshots
 ### Full features!
