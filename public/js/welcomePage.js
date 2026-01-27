@@ -17,7 +17,7 @@ $(function(){
   }
 
   socket.emit('new user', nickname);
-  socket.emit('joinRoom', {
+  socket.emit('join room', {
     username: nickname,
     room: roomId
   });

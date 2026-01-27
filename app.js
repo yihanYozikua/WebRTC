@@ -44,8 +44,8 @@ const handleDisconnect = (socket) => () => {
 const onConnection = (socket) => {
   socket.on('new user', handleNewUser(socket));
   socket.on('send message', handleSendMessage(socket));
-  socket.on('joinRoom', events.joinRoom(socket));
-  socket.on('disconnect', handleDisconnect());
+  socket.on('join room', events.joinRoom(socket));
+  socket.on('disconnect', handleDisconnect(socket));
   socket.on('offer', (data) => events.offer(socket)(data));
   socket.on('answer', (data) => events.answer(socket)(data));
   socket.on('icecandidate', (data) => events.icecandidate(socket)(data));

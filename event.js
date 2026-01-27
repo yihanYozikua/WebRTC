@@ -1,5 +1,6 @@
 const Room1 = 'general'
-// here saves all the socket.id and nicknames
+
+// saves all the socket.id and nicknames
 const users = {
   [Room1]: {},
 };
@@ -30,7 +31,7 @@ const joinRoom = (socket) => ({ username, room = Room1 }) => {
   });
 }
 
-const leaveRoom = (socket) => ({ room, username }) => {
+const leaveRoom = (socket) => ({ room }) => {
   socket.leave(room, () => {
       let usersRoom = users[room]
       delete  users[room][socket.client.id]

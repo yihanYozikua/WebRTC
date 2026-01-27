@@ -29,7 +29,7 @@ This is a real-time Video chat app.
 │   │   ├── landing.js
 │   │   ├── onlineList.js: Show or hide online users list user interface.
 │   │   ├── videoChat.js: WebRTC controller.
-│   │   └── welcome_page.js: Welcome page controller.
+│   │   └── welcomePage.js: Welcome page controller.
 │   ├── landing.html
 │   └── room.html
 ```
