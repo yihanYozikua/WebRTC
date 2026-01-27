@@ -35,7 +35,6 @@ const leaveRoom = (socket) => ({ room }) => {
   socket.leave(room, () => {
       let usersRoom = users[room]
       delete  users[room][socket.client.id]
-      // usersRoom = usersRoom.filter((user) => (user.username !== username)) // delete user from the array
       socket.to(room).emit('userLeave', usersRoom); // To all the users in the same room
   })
 }
