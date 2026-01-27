@@ -1,53 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Video Room</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Video Room</title>
+
+  <!--  Font Settings -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div id="chatroom-content">
-      <div class="container" style="display: flex; flex-direction: column; height: 100vh;">
-        <div class="container-grid">
-          <div class="col-8 video_chat-grid">
-            <section id="local-container">
+<header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+        style="display: flex; justify-content: space-between;">
+  <a class="fas fa-home navbar-brand" href="" style="margin-left: 3vh;"></a>
+  <a class="fas fa-user" id="userOnline" href="#" style="color: white; margin-right: 3vh;"></a>
+
+  <div id="userList">
+    <a class="fas fa-times-circle" id="userListClose" href="#" style="color: white; font-size: 2.5vh;"></a>
+    <span style="width: 250px; display: flex; justify-content: center; margin-top: 3vh;">
+        <span style="display: flex; justify-content: space-around; align-items: center;">
+          <i class="fas fa-circle" style="color: rgb(84, 184, 84); font-size: 1.5vh; margin: 0vh 1vh;"></i>
+          <span style="margin: 0vh 1vh;">online</span>
+        </span>
+      </span>
+
+    <div id="users" style="margin: 1vh 0vh;"></div>
+  </div>
+</header>
+
+<div id="chatroom-content">
+  <div class="container" style="display: flex; flex-direction: column; height: 100vh;">
+    <div class="container-grid">
+      <div class="col-8 video_chat-grid">
+        <section id="local-container">
               <span id="localVideo-container" class="localVideo-container">
                 <video id="localVideo" autoplay width="800px"></video>
               </span>
-            </section>
+        </section>
 
-            <section id="remote-container">
+        <section id="remote-container">
               <span id="remoteVideo-container" class="remoteVideo-container">
                 <video id="remoteVideo" autoplay width="400px"></video>
               </span>
-            </section>
+        </section>
 
-            <section class="box">
-              <button id="startButton" class="btn btn-success">Start</button>
-              <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
-              <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
-            </section>
-          </div>
+        <section class="box">
+          <button id="startButton" class="btn btn-success">Start</button>
+          <button id="callButton" class="btn btn-success" disabled>Enter Video Chat</button>
+          <button id="hangupButton" class="btn btn-danger" disabled>Hang Up</button>
+        </section>
+      </div>
 
-          <div class="col-4 text_chat-grid">
-            <div id="chatWrap" class="panel panel-default">
-              <div class="panel-body">
-                <div id="chat"></div>
-                <form id="send-message">
-                  <input type="text" id="message" placeholder="Type message...">
-                  <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-              </div>
-            </div>
+      <div class="col-4 text_chat-grid">
+        <div id="chatWrap" class="panel panel-default">
+          <div class="panel-body">
+            <div id="chat"></div>
+            <form id="send-message">
+              <input type="text" id="message" placeholder="Type message...">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script type="module" src="/js/welcome_page.js"></script>
-    <script type="module" src="/js/video_chat.js"></script>
+<footer id="footer">
+  <div class="footer-container" style="color: rgb(170, 170, 170);">
+    <div style="margin-bottom: 1vh;">
+      Copyright © 2021-2026 YIHAN HSIAO. All rights reserved.
+    </div>
+
+    <div>
+      <a href="mailto:newy860318@gmail.com" class="btn btn-secondary">
+        <i class="far fa-envelope"></i>
+        <span class="email-text">contact me</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script type="module" src="/js/welcome_page.js"></script>
+<script type="module" src="/js/video_chat.js"></script>
 </body>
 </html>

@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome - WebRTC Chat</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Welcome - WebRTC Chat</title>
+
+  <!--  Font Settings -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container" style="margin-top: 100px;">
-        <div id="enterPage">
-            <form id="setNick" role="form">
-                <h1 class="form-signin-heading">What's your name?</h1>
-                <div style="margin:20px;">
-                    <input size="35" id="txtNickname" class="form-control" required placeholder="Please enter your name" />
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary">Create / Join Room</button>
-            </form>
-        </div>
+<header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+        style="display: flex; justify-content: space-between;">
+  <a class="fas fa-home navbar-brand" href="" style="margin-left: 3vh;"></a>
+  <a class="fas fa-user" id="userOnline" href="#" style="color: white; margin-right: 3vh;"></a>
+
+  <div id="userList">
+    <a class="fas fa-times-circle" id="userListClose" href="#" style="color: white; font-size: 2.5vh;"></a>
+    <span style="width: 250px; display: flex; justify-content: center; margin-top: 3vh;">
+        <span style="display: flex; justify-content: space-around; align-items: center;">
+          <i class="fas fa-circle" style="color: rgb(84, 184, 84); font-size: 1.5vh; margin: 0vh 1vh;"></i>
+          <span style="margin: 0vh 1vh;">online</span>
+        </span>
+      </span>
+
+    <div id="users" style="margin: 1vh 0vh;"></div>
+  </div>
+</header>
+
+<div class="container" style="margin-top: 100px;">
+  <div id="enterPage">
+    <form id="setNick" role="form">
+      <h1 class="form-signin-heading">What's your name?</h1>
+      <div style="margin:20px;">
+        <input size="35" id="txtNickname" class="form-control" required placeholder="Please enter your name" />
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary">Create / Join Room</button>
+    </form>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="footer-container" style="color: rgb(170, 170, 170);">
+    <div style="margin-bottom: 1vh;">
+      Copyright © 2021-2026 YIHAN HSIAO. All rights reserved.
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="/js/landing.js"></script>
+
+    <div>
+      <a href="mailto:newy860318@gmail.com" class="btn btn-secondary">
+        <i class="far fa-envelope"></i>
+        <span class="email-text">contact me</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/landing.js"></script>
 </body>
 </html>
