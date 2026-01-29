@@ -1,18 +1,14 @@
-$(function(){
-    const $frmNick = $('#setNick');
-    const $nickBox = $('#txtNickname');
+document.addEventListener('DOMContentLoaded', () => {
+    const nickForm = document.querySelector('#setNick');
+    const nickInput = document.querySelector('#txtNickname');
 
-    $frmNick.submit(function(e){
+    nickForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nickname = $nickBox.val().trim();
-        if(!nickname) return;
+        const nickname = nickInput.value.trim();
+        if (!nickname) return;
 
-        // store the nickname into SessionStorage (disappear once the tab is closed)
         sessionStorage.setItem('myNickname', nickname);
-        
-        // generate random ID
         const randomId = Math.random().toString(36).substring(2, 9);
-        // redirect to the room
         window.location.href = `/room/${randomId}`;
     });
 });

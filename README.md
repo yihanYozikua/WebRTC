@@ -2,7 +2,6 @@
 This is a real-time Video chat app.
 ![](./img/createConnections.png)
 
-
 <!-- ## Table of Contents -->
 > * [Dev Tools](#dev-tools)
 > * [Files Description](#files-description)
@@ -33,6 +32,9 @@ This is a real-time Video chat app.
 │   ├── landing.html
 │   └── room.html
 ```
+* Caller: Establish RTCPeerConnection -> createOffer -> send `offer` to the other side via `chat.js`
+* Receiver: Receive offer event -> setRemoteDescription -> createAnswer -> return the answer.
+* ICE exchange: 2 ends will exchange the icecandidate via server until the connection built successfully. And then the video screen will show up in the remoteVideo label.
 
 ## How to run locally
 Download 

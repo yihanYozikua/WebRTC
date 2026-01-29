@@ -1,13 +1,25 @@
-let userOnline = document.getElementById("userOnline");
-let userList = document.getElementById("userList");
-let userListClose = document.getElementById("userListClose");
+const OnlineList = {
+  elements: {
+    userOnlineBtn: document.getElementById("userOnline"),
+    userListSidebar: document.getElementById("userList"),
+    closeBtn: document.getElementById("userListClose")
+  },
 
-userOnline.addEventListener('click', () => {
-  console.log("show users online");
-  userList.style.right = 0;
-  userList.style.boxShadow = "2px 2px 30px 10px rgba(230, 230, 230, 0.2);";
-});
+  init() {
+    if (!this.elements.userOnlineBtn) return;
 
-userListClose.addEventListener('click', () => {
-  userList.style.right = "-250px";
-});
+    this.elements.userOnlineBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.elements.userListSidebar.style.right = "0";
+      this.elements.userListSidebar.style.boxShadow = "2px 2px 30px 10px rgba(0, 0, 0, 0.5)";
+    });
+
+    this.elements.userListClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.elements.userListSidebar.style.right = "-250px";
+      this.elements.userListSidebar.style.boxShadow = "none";
+    });
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => OnlineList.init());

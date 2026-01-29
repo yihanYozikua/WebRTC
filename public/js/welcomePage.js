@@ -1,57 +1,60 @@
 import Chat from './chat.js';
 
-$(function () {
-  const nickname = sessionStorage.getItem('myNickname') ||
-                   (prompt('To join the room, a nickname is required...') || '').trim();
-
-  if (!nickname) {
-    alert('A nickname is REQUIRED to join this video call!!!');
-    window.location.href = '/';
-    return;
-  }
-  sessionStorage.setItem('myNickname', nickname);
-  const roomId = window.location.pathname.split('/')[2] || 'general';
-
-  // connect and emit
-  Chat.emit('new user', nickname);
-  Chat.emit('join room', {username: nickname, room: roomId});
-
-  $('#enterPage').hide();
-  $('#chatroom-content').show();
-  const $frmMessage = $('#send-message');
-  const $boxMessage = $('#message');
-  const $chat = $('#chat');
-
-  Chat.on('usernames', (data) => {
-    let sb = ' ';
-    for (let i = 0; i < data.length; i++) {
-      console.log(data[i]);
-      sb += '<i class="fas fa-user-circle"></i>&nbsp' + data[i] + "<br />";
+const WelcomePage = {
+  init() {
+    const nickname = sessionStorage.getItem('myNickname');
+    if (!nickname) {
+      const name = prompt('Nickname is required:');
+      if (!name) return window.location.href = '/';
+      sessionStorage.setItem('myNickname', name);
     }
-    $('div#users').html(sb);
-  });
-  Chat.on('chat', (server, msg) => {
-    const now = new Date();
-    let datetime = now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate();
-    datetime += ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 
-    $chat.append(
-      "<i style='color: #9bffb2;'><b>" + msg + "</b> <p style='font-size: 1.5vh;'>" + datetime + "</p></i>");
-  });
-  Chat.on('new message', (data) => {
-    const now = new Date();
-    let datetime = (now.getMonth() + 1) + '/' + now.getDate();
-    datetime += ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+    const roomId = window.location.pathname.split('/')[2] || 'general';
 
-    $chat.append(
-      "<div class='msg-content'><b style='font-weight:normal; background-color: gray; padding: 0.5vh 1vh; border-radius: 5px;'>" +
-      data.nick + "</b>&nbsp" + data.msg + " <i style='font-size: 1.5vh; color: gray;'>&nbsp" + datetime +
-      "</i><br /><div>");
-  });
+    Chat.emit('join room', { username: sessionStorage.getItem('myNickname'), room: roomId });
 
-  $frmMessage.submit(function (e) {
-    e.preventDefault();
-    Chat.emit('send message', $boxMessage.val().trim());
-    $boxMessage.val('');
-  });
-});
+    this.bindEvents();
+    this.listenSocket();
+  },
+
+  bindEvents() {
+    const msgForm = document.querySelector('#send-message');
+    const msgInput = document.querySelector('#message');
+
+    msgForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = msgInput.value.trim();
+      if (msg) {
+        Chat.emit('send message', msg);
+        msgInput.value = '';
+      }
+    });
+  },
+
+  listenSocket() {
+    const chatBox = document.querySelector('#chat');
+    const userList = document.querySelector('#users');
+
+    Chat.on('usernames', (users) => {
+      userList.innerHTML = users.map(u => `<div><i class="fas fa-user-circle"></i> ${u}</div>`).join('');
+    });
+
+    Chat.on('chat', (server, msg) => {
+      const time = new Date().toLocaleTimeString();
+      chatBox.innerHTML += `<div style="color: #9bffb2;"><b>${msg}</b> <small>${time}</small></div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+
+    Chat.on('new message', (data) => {
+      const time = new Date().toLocaleTimeString();
+      chatBox.innerHTML += `
+                <div class="msg-content">
+                    <b style="background: gray; padding: 2px 5px; border-radius: 3px;">${data.nick}</b> 
+                    ${data.msg} <small style="color:gray">${time}</small>
+                </div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  }
+};
+
+WelcomePage.init();
