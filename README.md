@@ -19,16 +19,16 @@ This is a real-time Video chat app.
 ## Files Description
 ```
 .
-├── app.js: Start up the socket.io connection.
-├── event.js: Events list may occur in the chat room. Including joinRoom, leaveRoom, offer, answer, icecandidate.
+├── app.js: Routing and socket events transferer.
+├── event.js
 ├── public
 │   ├── css
 │   ├── js
-│   │   ├── chat.js: User connection events. Including “new entering”, “leave”, and “disconnect.”
-│   │   ├── landing.js
+│   │   ├── chat.js: Singleton to manage all interface.
+│   │   ├── landing.js: Enter nickname, generate roomId and redirection.
 │   │   ├── onlineList.js: Show or hide online users list user interface.
-│   │   ├── videoChat.js: WebRTC controller.
-│   │   └── welcomePage.js: Welcome page controller.
+│   │   ├── videoChat.js: P2P connection, media streaming and WebRTC status.
+│   │   └── welcomePage.js: Text chat and online lists.
 │   ├── landing.html
 │   └── room.html
 ```
